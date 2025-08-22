@@ -151,5 +151,3 @@ The graph provides insights into model accuracy, loss, and convergence during tr
 
 For questions or help, open an issue in the repo or reach out to the project maintainer.
 
-```
-```
