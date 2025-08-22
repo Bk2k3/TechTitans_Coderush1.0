@@ -1,0 +1,38 @@
+# configs/kaggle_img_config.yaml
+# Secondary pipeline for Kaggle Spectrogram Images (preprocessed)
+DATA_DIR: "kagg/EEG_IMAGES_VGG16" # expects subfolders train/ and val/ (or will create split)
+OUTPUT_DIR: "outputs/kaggle_img"
+SEED: 1337
+N_WORKERS: 4
+
+IMG:
+  SIZE: 224
+  AUG:
+    HFLIP: 0.5
+    VFLIP: 0.0
+    ROTATE: 10
+    COLORJITTER: [0.05, 0.05, 0.05, 0.02]
+
+MODEL:
+  BACKBONE: resnet18   # options: resnet18, efficientnet_b0, vit_b_16 (torchvision >=0.16)
+  DROPOUT: 0.2
+  PRETRAINED: true
+
+TRAINING:
+  BATCH_SIZE: 32
+  MAX_EPOCHS: 40
+  LR: 3e-4
+  WEIGHT_DECAY: 1e-4
+  VAL_SPLIT: 0.15      # if no separate val exists, will split from train
+  EARLY_STOP_PATIENCE: 8
+  MIXED_PRECISION: true
+
+LOGGING:
+  SAVE_CM: true
+  SAVE_ROC: true
+  SAVE_GRADCAM: true
+
+EXPORT:
+  SAVE_PT: true
+  SAVE_ONNX: true
+  ONNX_OPSET: 12

@@ -1,0 +1,43 @@
+# Python virtual environment
+eegv/
+venv/
+ENV/
+#dataset
+kagg/
+repod/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE settings
+.idea/
+.vscode/
+*.swp
+
+# Environment variables
+.env
+.env.local
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Local development settings
+*.log
+.DS_Store
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# PyInstaller
+*.spec
+*.manifest
+*.mo

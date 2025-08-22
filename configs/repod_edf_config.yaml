@@ -1,0 +1,66 @@
+# configs/repod_edf_config.yaml
+# Main pipeline for RepOD EDF (raw EEG -> clean -> Wavelet + Fourier -> CNN/Transformer)
+DATA_DIR: "repod"   # folder containing *.edf (e.g., h01.edf ... s14.edf)
+OUTPUT_DIR: "outputs/repod_edf"
+SEED: 1337
+N_WORKERS: 4
+
+EEG:
+  FS: 250             # sampling rate per dataset docs
+  CHANNELS: [Fp1, Fp2, F7, F3, Fz, F4, F8, T3, C3, Cz, C4, T4, T5, P3, Pz, P4, T6, O1, O2]
+  BANDPASS: [0.5, 45]
+  NOTCH: 50           # powerline
+  EPOCH_LEN_SEC: 4
+  EPOCH_OVERLAP: 0.5  # fraction
+  USE_ICA: true
+
+FEATURES:
+  # Fourier (Welch PSD)
+  WELCH:
+    N_PER_SEG: 512
+    N_OVERLAP: 256
+    FREQ_BANDS:
+      delta: [1, 4]
+      theta: [4, 8]
+      alpha: [8, 13]
+      beta:  [13, 30]
+      gamma: [30, 45]
+  # Wavelet (DWT) using db4
+  WAVELET:
+    FAMILY: db4
+    LEVELS: 4
+    STATS: [energy, mean, std]
+
+MODEL:
+  KIND: transformer    # one of: [cnn1d, transformer]
+  TRANSFORMER:
+    D_MODEL: 128
+    N_HEAD: 4
+    N_LAYERS: 2
+    DIM_FF: 256
+    DROPOUT: 0.2
+  CNN1D:
+    CHANNELS: [32, 64, 128]
+    KERNEL_SIZES: [7,5,3]
+    DROPOUT: 0.25
+
+TRAINING:
+  BATCH_SIZE: 64
+  MAX_EPOCHS: 60
+  LR: 1e-3
+  WEIGHT_DECAY: 1e-4
+  VAL_SPLIT_SUBJECT: 0.2   # split by subject (patient-wise)
+  TEST_SPLIT_SUBJECT: 0.2
+  EARLY_STOP_PATIENCE: 10
+  MIXED_PRECISION: true
+
+LOGGING:
+  SAVE_CM: true
+  SAVE_ROC: true
+  SAVE_TSNE: true
+  SAVE_FEATURE_HISTS: true
+
+EXPORT:
+  SAVE_PT: true
+  SAVE_ONNX: true
+  ONNX_OPSET: 12
