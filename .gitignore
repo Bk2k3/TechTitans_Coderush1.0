@@ -1,43 +1,23 @@
-# Python virtual environment
-eegv/
+# Virtual Environment
 venv/
-ENV/
-#dataset
-kagg/
-repod/
+env/
+.env/
+.venv/
+backend/
+frontend/
+models/
 
-# Python bytecode
+eeg_schizophrenia_model1.pt
+*.ipynb
+
+# EDF files
+*.edf
+
+# Python cache files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-
 # IDE settings
-.idea/
 .vscode/
-*.swp
-
-# Environment variables
-.env
-.env.local
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Local development settings
-*.log
-.DS_Store
-
-# Coverage reports
-htmlcov/
-.coverage
-coverage.xml
-
-# PyInstaller
-*.spec
-*.manifest
-*.mo
+.idea/

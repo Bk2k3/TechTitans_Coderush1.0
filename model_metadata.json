@@ -1,0 +1,10 @@
+{
+  "input_dim": 228,
+  "n_samples": 28835,
+  "n_features": 228,
+  "accuracy": 99.1329980925958,
+  "class_names": [
+    "Healthy",
+    "Schizophrenia"
+  ]
+}
