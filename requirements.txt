@@ -1,0 +1,12 @@
+streamlit
+torch
+numpy
+pandas
+mne
+plotly
+scipy
+scikit-learn
+PyWavelets
+joblib
+matplotlib
+seaborn
