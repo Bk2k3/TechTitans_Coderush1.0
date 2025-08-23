@@ -146,6 +146,9 @@ The graph provides insights into model accuracy, loss, and convergence during tr
 
 ---
 
+##Check out the working project - 
+https://eegschizo.streamlit.app/
+
 
 ## Contact / Support
 
